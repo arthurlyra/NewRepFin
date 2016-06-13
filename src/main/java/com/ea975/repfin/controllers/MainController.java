@@ -1,4 +1,4 @@
-package com.ea975.repfin;
+package com.ea975.repfin.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

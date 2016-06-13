@@ -16,12 +16,6 @@ public class Republicas {
     @Column(name = "name")
     private String name;
 
-    //    @OneToMany(mappedBy = "republica_id", targetEntity = Users.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    //    private List<Users> users;
-
-    //    @OneToMany(mappedBy = "republica_id", targetEntity = Transactions.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    //    private List<Transactions> transactions;
-
     public Integer getRepublica_id() {
         return republica_id;
     }
@@ -37,20 +31,4 @@ public class Republicas {
     public void setName(String name) {
         this.name = name;
     }
-
-    //    public List<Users> getUsers() {
-    //        return users;
-    //    }
-    //
-    //    public void setUsers(List<Users> users) {
-    //        this.users = users;
-    //    }
-    //
-    //    public List<Transactions> getTransactions() {
-    //        return transactions;
-    //    }
-    //
-    //    public void setTransactions(List<Transactions> transactions) {
-    //        this.transactions = transactions;
-    //    }
 }

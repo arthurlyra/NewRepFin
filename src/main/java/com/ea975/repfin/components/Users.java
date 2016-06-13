@@ -11,7 +11,8 @@ import java.util.List;
 public class Users {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name="user_id")
     private Integer user_id;
 
     @NotNull
@@ -27,15 +28,12 @@ public class Users {
     private String balance;
 
     @NotNull
-    @Column(name = "exist")
-    private Boolean exist;
+    @Column(name = "status")
+    private Integer status;
 
     @ManyToOne
     @JoinColumn(name = "republica_id")
     private Republicas republica;
-
-    //    @OneToMany(mappedBy = "responsible_user_id", targetEntity = Transactions.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    //    private List<Transactions> transactions;
 
     public Integer getUser_id() {
         return user_id;
@@ -69,12 +67,12 @@ public class Users {
         this.balance = balance;
     }
 
-    public Boolean getExist() {
-        return exist;
+    public Integer getStatus() {
+        return status;
     }
 
-    public void setExist(Boolean exist) {
-        this.exist = exist;
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
     public Republicas getRepublica() {
@@ -84,12 +82,4 @@ public class Users {
     public void setRepublica(Republicas republica) {
         this.republica = republica;
     }
-
-    //    public List<Transactions> getTransactions() {
-    //        return transactions;
-    //    }
-    //
-    //    public void setTransactions(List<Transactions> transactions) {
-    //        this.transactions = transactions;
-    //    }
 }

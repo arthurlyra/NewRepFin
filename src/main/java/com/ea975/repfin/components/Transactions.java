@@ -1,5 +1,8 @@
 package com.ea975.repfin.components;
 
+
+import org.springframework.data.annotation.Id;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
@@ -8,7 +11,8 @@ import javax.validation.constraints.NotNull;
 public class Transactions {
 
     @Id
-    @GeneratedValue (strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name="transaction_id")
     private Integer transaction_id;
 
     @NotNull

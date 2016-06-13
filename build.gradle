@@ -14,7 +14,7 @@ repositories {
 /** ***********************************************************************************************************************************************************
  * CONFIGURATION                                                                                                                                              *
  *********************************************************************************************************************************************************** **/
-mainClassName="com.ea975.repfin.Main"
+mainClassName="com.ea975.repfin.main.Main"
 group 'com.ea975'
 sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
@@ -22,8 +22,6 @@ compileJava.options.encoding = 'UTF-8'
 defaultTasks = ["clean", "build"]
 configurations.all {
     exclude group: 'log4j'
-//    exclude group: 'org.apache.tomcat.embed'
-//    exclude module: 'spring-boot-starter-tomcat'
 }
 
 /** ***********************************************************************************************************************************************************
@@ -33,14 +31,15 @@ dependencies {
     /** *******************************************************************************************************************************************************
      * DEVELOPMENT DEPENDENCIES                                                                                                                               *
      ******************************************************************************************************************************************************* **/
-    compile group: 'com.google.guava', name: 'guava', version: '19.0'
-    compile group: 'commons-io', name: 'commons-io', version: '2.5'
-    compile group: 'joda-time', name: 'joda-time', version: '2.9.4'
-    compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.4'
+    compile group: 'com.google.guava', name: 'guava', version: '19.0' //Metodos genericos
+    compile group: 'commons-io', name: 'commons-io', version: '2.5' //Metodos para IO
+    compile group: 'joda-time', name: 'joda-time', version: '2.9.4' //DateTime
+    compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.4' //Metodos Genericos
     compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.39'
-    compile group: 'com.zaxxer', name: 'HikariCP-java6', version: '2.1.0'
-    compile group: 'org.springframework.boot', name: 'spring-boot-starter-velocity', version: '1.3.5.RELEASE'
-    compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: '1.3.5.RELEASE'
+    compile group: 'com.zaxxer', name: 'HikariCP-java6', version: '2.1.0' //Connection pooler
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-velocity', version: '1.3.5.RELEASE' //Template engine - Interpretação de template
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: '1.3.5.RELEASE' //JPA
+    compile group: 'org.springframework.security', name: 'spring-security-web', version: '4.1.0.RELEASE' //Controle de Sessao
 
     /** *******************************************************************************************************************************************************
      * UNIT TESTS DEPENDENCIES                                                                                                                                *
