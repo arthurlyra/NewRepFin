@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/repfin.iml" filepath="$PROJECT_DIR$/.idea/modules/repfin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/repfin_main.iml" filepath="$PROJECT_DIR$/.idea/modules/repfin_main.iml" group="repfin" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/repfin_test.iml" filepath="$PROJECT_DIR$/.idea/modules/repfin_test.iml" group="repfin" />
+    </modules>
+  </component>
+</project>
