@@ -6,26 +6,23 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "subTransactions")
+@Table(name = "subtransactions")
 public class SubTransactions {
 
     @Id
     @GeneratedValue (strategy = GenerationType.AUTO)
-    @Column(name = "subTransactions_id")
+    @Column(name = "subTransaction_id")
     private Integer id;
 
     @ManyToOne
-    @NotNull
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", nullable = false)
     private Users user;
 
     @ManyToOne
-    @NotNull
-    @JoinColumn(name = "transaction_id")
+    @JoinColumn(name = "transaction_id", nullable = false)
     private Transactions transaction;
 
-    @NotNull
-    @Column(name = "value")
+    @Column(name = "value", nullable = false)
     private Float value;
 
     public Integer getId() {

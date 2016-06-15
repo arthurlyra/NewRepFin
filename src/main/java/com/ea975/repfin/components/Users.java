@@ -1,7 +1,5 @@
 package com.ea975.repfin.components;
 
-import com.ea975.repfin.components.Republicas;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.List;
@@ -15,25 +13,23 @@ public class Users {
     @Column(name="user_id")
     private Integer user_id;
 
-    @NotNull
-    @Column(name = "name")
+    @Column(name = "name", nullable = false)
     private String name;
 
-    @NotNull
-    @Column(name = "password")
+    @Column(name = "password", nullable = false)
     private String password;
 
-    @NotNull
-    @Column(name = "balance")
+    @Column(name = "balance", nullable = false)
     private String balance;
 
-    @NotNull
-    @Column(name = "status")
+    @Column(name = "status", nullable = false)
     private Integer status;
 
     @ManyToOne
-    @JoinColumn(name = "republica_id")
+    @JoinColumn(name = "republica_id", nullable = false)
     private Republicas republica;
+
+    protected Users() {}
 
     public Integer getUser_id() {
         return user_id;

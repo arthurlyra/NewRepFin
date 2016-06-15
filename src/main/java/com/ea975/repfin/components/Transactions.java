@@ -15,20 +15,18 @@ public class Transactions {
     @Column(name="transaction_id")
     private Integer transaction_id;
 
-    @NotNull
-    @Column(name = "description")
+    @Column(name = "description", nullable = false)
     private String description;
 
-    @NotNull
-    @Column(name = "total_value")
+    @Column(name = "total_value", nullable = false)
     private Float total_value;
 
     @ManyToOne
-    @JoinColumn(name = "responsible_user_id")
+    @JoinColumn(name = "responsible_user_id", nullable = false)
     private Users user;
 
     @ManyToOne
-    @JoinColumn(name = "republica_id")
+    @JoinColumn(name = "republica_id", nullable = false)
     private Republicas republica;
 
     public Integer getTransaction_id() {

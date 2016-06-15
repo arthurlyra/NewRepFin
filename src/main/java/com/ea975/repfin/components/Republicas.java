@@ -12,8 +12,7 @@ public class Republicas {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer republica_id;
 
-    @NotNull
-    @Column(name = "name")
+    @Column(name = "name", nullable = false)
     private String name;
 
     public Integer getRepublica_id() {
