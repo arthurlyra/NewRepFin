@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8"/>
+        <title>RepFin Login</title>
+    </head>
+    <body onload='document.loginForm.username.focus();'>
+
+        <center>
+            <img src= "http://www.lebenshilfe24.de/images/landingpages/haus-icon.png" alt="RepFin" style="width:50px;height:50px;border:0;"/>
+        </center>
+
+        <center>
+            <h1>RepFin</h1>
+            <table style="width:50%">
+                <tr>
+                    <td>
+                        <div align="center">
+                            <form th:action="@{/login}" method="post">
+                                <div class="header"><span>Login</span></div>
+                                <div><input type="text" name="username" placeholder="Usuario (apelido)"/></div>
+                                <div><input type="password" name="password" placeholder="Senha"/></div>
+                                <div><input name="submit" type="submit" value="Login"/></div>
+                            </form>
+                        </div>
+                    </td>
+                    <td>
+                        <div align="center">
+                            <form th:action="@{/register}" method="post">
+                                    <div class="header"><span>Cadastrar</span></div>
+                                    <div><input type="text" name="username" placeholder="Usuario (apelido)"/></div>
+                                    <div><input type="text" name="email" placeholder="E-mail"/></div>
+                                    <div><input type="password" name="password" placeholder="Senha"/></div>
+                                    <div><input name="submit" type="submit" value="Cadastrar"/></div>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </center>
+
+        <div th:if="${param.error}">
+            Invalid username and password
+        </div>
+        <div th:if="${param.logout}">
+            You have been logged out
+        </div>
+        <div th:if="${param.created}">
+            User has been created
+        </div>
+    </body>
+</html>

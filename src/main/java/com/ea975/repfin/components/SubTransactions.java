@@ -3,7 +3,6 @@ package com.ea975.repfin.components;
 
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "subtransactions")

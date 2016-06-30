@@ -1,14 +1,21 @@
 package com.ea975.repfin.components;
 
 
-import org.springframework.data.annotation.Id;
-
+import javax.jws.soap.SOAPBinding;
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="transactions")
 public class Transactions {
+
+    protected Transactions(){};
+
+    public Transactions(String description, Float total_value, Users user, Republicas republica){
+        this.description = description;
+        this.total_value = total_value;
+        this.user = user;
+        this.republica = republica;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

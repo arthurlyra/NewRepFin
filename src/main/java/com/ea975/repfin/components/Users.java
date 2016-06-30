@@ -1,12 +1,19 @@
 package com.ea975.repfin.components;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import java.util.List;
 
 @Entity
-@Table (name = "users")
+@Table(name = "users")
 public class Users {
+
+    protected Users() {}
+
+    public Users(String name, String password, String balance, Integer status) {
+        this.name = name;
+        this.password = password;
+        this.balance = balance;
+        this.status = status;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -22,14 +29,17 @@ public class Users {
     @Column(name = "balance", nullable = false)
     private String balance;
 
+    /*
+        0 -> Sem republica
+        1 -> Esperando aceitacao
+        2 -> Em uma republica
+     */
     @Column(name = "status", nullable = false)
     private Integer status;
 
     @ManyToOne
-    @JoinColumn(name = "republica_id", nullable = false)
+    @JoinColumn(name = "republica_id", nullable = true)
     private Republicas republica;
-
-    protected Users() {}
 
     public Integer getUser_id() {
         return user_id;
