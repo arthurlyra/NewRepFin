@@ -68,12 +68,15 @@ public class MainController {
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public String register(Model model, @RequestParam(value = "username", required = true) String username,
                            @RequestParam(value = "password", required = true) String password,
-                           @RequestParam(value = "email", required = true) String email) {
+                           @RequestParam(value = "email", required = true) String email,
+                           HttpServletRequest httpServletRequest) {
         if(!(username.isEmpty() || password.isEmpty() || email.isEmpty())) {
-            Users user = usersDAO.save(new Users(username, password, "0.00", 0));
+            Users user = usersDAO.save(new Users(username, password, "0.00", 1));
             userRolesDAO.save(new UserRoles(user, ROLE_USER, username));
 
-            return "login?created";
+            model.addAttribute("created", true);
+            model.addAttribute("userName", user.getName());
+            return "login";
         } else {
             return  "login?error";
         }
