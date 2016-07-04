@@ -14,6 +14,6 @@ public interface UsersDAO extends CrudRepository<Users,Integer> {
     @Query("FROM Users u WHERE u.republica.republica_id = :id")
     List<Users> findByRepublicaId(@Param("id") Integer republicaId);
 
-    @Query("SELECT u.user_id FROM Users u WHERE u.name = :name")
-    Integer findByName(@Param("name") String name);
+    @Query("FROM Users u WHERE u.name = :name")
+    Users findByName(@Param("name") String name);
 }

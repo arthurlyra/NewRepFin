@@ -1,24 +1,124 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <title>ADMIN</title>
+    <!--Menu horizontal-->
+    <style>
+        ul#menu {
+            padding: 0;
+        }
+
+        ul#menu li {
+            display: inline;
+        }
+
+        ul#menu li a {
+            background-color: black;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 2px 4px;
+        }
+
+        ul#menu li a:hover {
+            background-color: gray;
+        }
+    </style>
 </head>
-<body th:inline="text">
-
-    <div sec:authorize="hasRole('ROLE_ADMIN')">
-        <h1>Title : [[${title}]]</h1>
-        <h1>Message : [[${message}]]</h1>
-
-        <div th:if="${httpServletRequest.getRemoteUser()} != null">
-            <h2>
-                Welcome : [[${httpServletRequest.getRemoteUser()}]]
-            </h2>
-
-            <form th:action="@{/logout}" method="post">
-                <input type="submit" value="Sign Out"/>
-            </form>
-        </div>
+<body>
+    <div align="right">
+        <ul id="menu">
+            <li><a th:href="@{/home}">Início</a></li>
+            <li><a th:href="@{/republica}">República</a></li>
+            <li th:inline="text"><a th:href="@{/usuario}">[[${user.getName()}]]</a></li>
+            <li><a th:href="@{/logout}">Sair</a></li>
+        </ul>
     </div>
+
+    <center>
+        <!--Tabela(3x2) com tabelas internas-->
+        <table style="width:60%">
+            <tr>
+                <th align=center>
+                    <font size="4" face="Verdana">
+                        <b><br/>Transações<br/><br/></b>
+                    </font>
+                </th>
+                <th>
+                </th>
+            </tr>
+            <!--Segunda linha da tabela, com a segunda celula vazia e a primeira com a combobox com as opções de morador-->
+            <tr>
+                <td align=right><!--Combobox-->
+                    <form action="action_page.php">
+                        <select name="moradores" th:field="*{user}">
+                            <option th:each="user : ${users}"
+                                    th:value="${user.getUser_id()}"
+                                    th:text="${user.getName()}">
+                                Morador
+                            </option>
+                        </select>
+                        <br/>
+                    </form>
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div style="overflow: auto; width=100%; height: 150px">
+                        <table border="1" cellpadding="0" cellspacing="0" style="width:100%">
+                            <tr th:each="t : ${transactions}">
+                                <td th:text="${t.getDescription()}">Descricao</td>
+                                <td th:text="R$ + ${t.getTotal_value()}">R$ 120,00</td>
+                                <td><button type="button" onclick="alert('showPop()')">edit</button></td>
+                                <td><button type="button" onclick="alert('ShowPop()')" title="Delete">-</button></td>
+                            </tr>
+                        </table>
+                    </div>
+                </td>
+                <td align=right>
+                    <table border="0">
+                        <tr>
+                            <td>Meu Saldo:</td>
+                            <td th:inline="text">R$ [[${user.getBalance}]]</td>
+                        </tr>
+                        <tr>
+                            <td>Aluguel:</td>
+                            <td>R$ 620,00</td>
+                        </tr>
+                        <tr>
+                            <td>Contas da casa:</td>
+                            <td th:inline="text">R$ [[${totalTransactions}]]</td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td align=center>
+                    <br/><br/>Adicionar transação    <button type="button" onclick="alert('ShowPop()')">+</button>
+                </td>
+                <td>
+                </td>
+            </tr>
+        </table>
+    </center>
+
+    <!--<div sec:authorize="hasRole('ROLE_ADMIN')">-->
+        <!--<h1>Title : [[${title}]]</h1>-->
+        <!--<h1>Message : [[${message}]]</h1>-->
+
+        <!--<div th:if="${httpServletRequest.getRemoteUser()} != null">-->
+            <!--<h2>-->
+                <!--Welcome : [[${httpServletRequest.getRemoteUser()}]]-->
+            <!--</h2>-->
+
+            <!--<form th:action="@{/logout}" method="post">-->
+                <!--<input type="submit" value="Sign Out"/>-->
+            <!--</form>-->
+        <!--</div>-->
+    <!--</div>-->
 </body>
 </html>
+

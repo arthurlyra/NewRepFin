@@ -6,6 +6,12 @@ import javax.persistence.*;
 @Table(name="republicas")
 public class Republicas {
 
+    protected Republicas() {}
+
+    public Republicas (String name) {
+        this.name = name;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer republica_id;
@@ -21,9 +27,7 @@ public class Republicas {
         this.republica_id = republica_id;
     }
 
-    public String getName() {
-        return name;
-    }
+    public String getName() { return name; }
 
     public void setName(String name) {
         this.name = name;
