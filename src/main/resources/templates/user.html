@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>RepFin User</title>
+    <style>
+        ul#menu {
+            padding: 0;
+        }
+
+		ul#menu li {
+			display: inline;
+		}
+
+		ul#menu li a {
+			background-color: black;
+			color: white;
+			padding: 10px 20px;
+			text-decoration: none;
+			border-radius: 2px 4px;
+		}
+
+		ul#menu li a:hover {
+			background-color: gray;
+		}
+	</style>
+</head>
+<body>
+    <div align="right">
+        <ul id="menu">
+            <li><a th:href="@{/home}">Início</a></li>
+            <li><a th:href="@{/republica}">República</a></li>
+            <li th:inline="text"><a th:href="@{/user}">[[${user.getName()}]]</a></li>
+            <li><a th:href="@{/logout}">Sair</a></li>
+        </ul>
+    </div>
+
+    <center>
+        <table style="width:50%">
+            <tr>
+                <div style="center" th:inline="text">
+                    Nome: [[${user.getName()}]]
+                </div>
+                <form th:action="@{/editUser}" method="post">
+                    <div class="header"><span>Nova senha:</span></div>
+                    <div><input type="password" name="password" placeholder="Nova Senha"/></div>
+                    <div><input name="submit" type="submit" value="Alterar"/></div>
+                </form>
+            </tr>
+        </table>
+
+        <br/>
+        <div th:if="${edited} != null">
+            <div th:if="${edited}">
+                Senha alterada com sucesso!
+            </div>
+            <div th:if="${!edited}">
+                Favor preencher o campo necessário
+            </div>
+        </div>
+    </center>
+
+</body>
+</html>
+

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>RepFin República</title>
+    <style>
+        ul#menu {
+            padding: 0;
+        }
+
+		ul#menu li {
+			display: inline;
+		}
+
+		ul#menu li a {
+			background-color: black;
+			color: white;
+			padding: 10px 20px;
+			text-decoration: none;
+			border-radius: 2px 4px;
+		}
+
+		ul#menu li a:hover {
+			background-color: gray;
+		}
+	</style>
+</head>
+<body>
+<div align="right">
+    <ul id="menu">
+        <li><a th:href="@{/home}">Início</a></li>
+        <li><a th:href="@{/republica}">República</a></li>
+        <li th:inline="text"><a th:href="@{/user}">[[${user.getName()}]]</a></li>
+        <li><a th:href="@{/logout}">Sair</a></li>
+    </ul>
+</div>
+
+<center>
+    <table style="width:70%">
+        <tr>
+            <td align="center">
+                <form th:action="@{/editRepublica}" method="post">
+                    <div class="header"><span>Novo nome:</span></div>
+                    <div><input type="text" name="repName" th:placeholder="${republica.getName()}"/></div>
+                    <div><input name="submit" type="submit" value="Alterar"/></div>
+                </form>
+            </td>
+
+            <td align="center">
+                <div style="overflow: auto; width=90%; height: 150px">
+                    <table border="1" cellpadding="0" cellspacing="0" style="width:100%">
+                        <thead>Pedidos de aceitação:</thead>
+                        <tr th:each="u : ${users}">
+                            <td th:text="${u.getName()}">Nome</td>
+                            <td><a th:href="@{/acceptUser(id=${u.getUser_id()})}"><button type="button">Aceitar</button></a></td>
+                            <td><a th:href="@{/rejectUser(id=${u.getUser_id()})}"><button type="button">Rejeitar</button></a></td>
+                        </tr>
+                    </table>
+                </div>
+            </td>
+
+            <td align="center">
+                <div style="overflow: auto; width=90%; height: 150px">
+                    <table border="1" cellpadding="0" cellspacing="0" style="width:100%">
+                        <thead>Moradores:</thead>
+                        <tr th:each="m : ${moradores}">
+                            <td th:text="${m.getName()}">
+                                Nome
+                            </td>
+                            <td>
+                                <a th:href="@{/removeUser(id=${m.getUser_id()})}">
+                                    <button type="button">
+                                        Remover
+                                    </button>
+                                </a>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </td>
+        </tr>
+    </table>
+
+    <br/>
+    <div th:if="${edited} != null">
+        <div th:if="${edited}">
+            Nome da república alterado com sucesso!
+        </div>
+        <div th:if="${!edited}">
+            Favor preencher e/ou alterar o campo necessário
+        </div>
+    </div>
+    <div th:if="${accepted} != null">
+        <div th:if="${accepted}">
+            Usuário foi aceito na república!
+        </div>
+    </div>
+    <div th:if="${rejected} != null">
+        <div th:if="${rejected}">
+            Usuário não foi aceito na república!
+        </div>
+    </div>
+    <div th:if="${removed} != null">
+        <div th:if="${removed}">
+            Usuário removido da república!
+        </div>
+    </div>
+</center>
+
+</body>
+</html>
+
