@@ -7,6 +7,7 @@ import com.ea975.repfin.daos.RepublicasDAO;
 import com.ea975.repfin.daos.TransactionsDAO;
 import com.ea975.repfin.daos.UserRolesDAO;
 import com.ea975.repfin.daos.UsersDAO;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -121,7 +122,7 @@ public class RepublicasController {
         Republicas republica = usersDAO.findByName(httpServletRequest.getRemoteUser()).getRepublica();
         Republicas rep2 = republicasDAO.findByName(repName);
 
-        if(repName == null || repName.isEmpty()  || rep2 != null) {
+        if(StringUtils.isBlank(repName) || rep2 != null) {
             return "redirect:/republica?edited=false";
         }
 

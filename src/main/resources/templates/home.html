@@ -98,12 +98,16 @@
                     <b><br/>[[${newOrEdit}]]<br/><br/></b>
                     <form th:action="@{/addTransaction}" method="post">
                         <div class="header"><span>Descrição da transação:</span></div>
-                        <input type="text" name="descricao" th:placeholder="${descricao}"/><br/>
+                        <input type="text" name="descricao" th:value="${descricao}"/><br/>
                         <div class="header"><span>Valor da transação:</span></div>
-                        <input type="text" name="valor" th:placeholder="${valor}"/><br/>
+                        <input type="text" name="valor" th:value="${valor}"/><br/>
                         <input type="hidden" name="id" th:value="${tId}"/>
                         <input type="submit" value="Enviar"/>
                     </form>
+                    <br/>
+                    <div th:if="${param.noTransaction}">
+                        Favor preencher os campos corretamente
+                    </div>
                 </td>
                 <td>
                     <!-- Celula vazia -->

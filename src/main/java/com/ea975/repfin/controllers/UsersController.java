@@ -8,6 +8,7 @@ import com.ea975.repfin.daos.RepublicasDAO;
 import com.ea975.repfin.daos.TransactionsDAO;
 import com.ea975.repfin.daos.UserRolesDAO;
 import com.ea975.repfin.daos.UsersDAO;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -41,7 +42,7 @@ public class UsersController {
                            HttpServletRequest httpServletRequest) {
         Users user2 = usersDAO.findByName(username);
 
-        if(!(username.isEmpty() || password.isEmpty() || email.isEmpty() || user2 != null)) {
+        if(!(StringUtils.isBlank(username) || StringUtils.isBlank(password) || StringUtils.isBlank(email) || user2 != null)) {
             Users user = usersDAO.save(new Users(username, password, "0.00", 1));
             userRolesDAO.save(new UserRoles(user, ROLE_USER, username));
 
@@ -146,7 +147,7 @@ public class UsersController {
                            @RequestParam(value = "password", required = false) String password) {
         Users user = usersDAO.findByName(httpServletRequest.getRemoteUser());
 
-        if(password == null) {
+        if(StringUtils.isBlank(password)) {
             return "redirect:/user?edited=false";
         }
 

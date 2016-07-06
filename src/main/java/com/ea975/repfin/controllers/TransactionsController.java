@@ -7,6 +7,7 @@ import com.ea975.repfin.daos.RepublicasDAO;
 import com.ea975.repfin.daos.TransactionsDAO;
 import com.ea975.repfin.daos.UserRolesDAO;
 import com.ea975.repfin.daos.UsersDAO;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,7 +34,7 @@ public class TransactionsController {
                                  @RequestParam(value = "id", required = false) Integer id) {
         Users user = usersDAO.findByName(httpServletRequest.getRemoteUser());
 
-        if(descricao == null || valor == null) {
+        if(StringUtils.isBlank(descricao) || valor == null || valor == 0.0F) {
             return "redirect:/home?noTransaction=true";
         }
 
