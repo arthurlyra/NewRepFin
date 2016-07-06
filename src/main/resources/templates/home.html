@@ -96,11 +96,12 @@
                 <td align="center" th:inline="text">
                     <br/><br/>
                     <b><br/>[[${newOrEdit}]]<br/><br/></b>
-                    <form th:action="@{/${url}}" method="post">
+                    <form th:action="@{/addTransaction}" method="post">
                         <div class="header"><span>Descrição da transação:</span></div>
                         <input type="text" name="descricao" th:placeholder="${descricao}"/><br/>
                         <div class="header"><span>Valor da transação:</span></div>
                         <input type="text" name="valor" th:placeholder="${valor}"/><br/>
+                        <input type="hidden" name="id" th:value="${tId}"/>
                         <input type="submit" value="Enviar"/>
                     </form>
                 </td>
